@@ -3,15 +3,17 @@ export default function getListStudents(ArrayOfObjects, city, newGrades) {
   if (Array.isArray(ArrayOfObjects) === false) {
     return listOfStudents;
   }
-  listOfStudents = ArrayOfObjects.filter((item) => item.location === city)
-  listOfStudents.map((item) => item.grade = 'N/A')
+  listOfStudents = ArrayOfObjects.filter((item) => item.location === city);
   listOfStudents.map((item) => {
-      for (const student of newGrades) {
-        if (item.id === student.studentId) {
-          item.grade = student.grade;
-        }
+    const item1 = item;
+    for (const student of newGrades) {
+      if (item1.id === student.studentId) {
+        item1.grade = student.grade;
+      } else {
+        item1.grade = 'N/A';
       }
-      return item;
-    });
+    }
+    return item1;
+  });
   return listOfStudents;
 }
